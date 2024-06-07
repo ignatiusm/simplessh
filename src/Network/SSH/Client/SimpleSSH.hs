@@ -204,7 +204,7 @@ sendFile session mode source target = do
 
 -- | Close a session.
 closeSession :: Session -> SimpleSSH ()
-closeSession = lift . closeSessionC
+closeSession = liftA . closeSessionC
 
 -- | Open a connection, authenticate, execute some action and close the
 -- connection.
