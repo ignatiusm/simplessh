@@ -23,6 +23,8 @@ module Network.SSH.Client.SimpleSSH
 import           Control.Applicative
 import           Control.Exception
 import           Control.Monad.Except
+import           Control.Monad.Trans.Class (lift)
+import           Control.Monad.IO.Class (liftIO)
 
 import qualified Data.ByteString.Char8 as BS
 
@@ -204,7 +206,7 @@ sendFile session mode source target = do
 
 -- | Close a session.
 closeSession :: Session -> SimpleSSH ()
-closeSession = liftA . closeSessionC
+closeSession = lift . closeSessionC
 
 -- | Open a connection, authenticate, execute some action and close the
 -- connection.
